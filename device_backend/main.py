@@ -6,10 +6,12 @@ from device_api import DeviceAPI
 # Will only take one argument at a time
 #
 # Handles the following commands:
-# - mount
+# - mount [ISO to mount]
 # - unmount
-# - create_password
+# - flash_mode_on
+# - flash_mode_off
 # - sign_in
+# - create_password
 # - change_password
 # - web_interface_on
 # - web_interface_off
@@ -25,44 +27,62 @@ from device_api import DeviceAPI
 # python main.py --web_interface_off
 # python main.py --update
 
-OPTIONS = {
-    "--help": DeviceAPI.help,
-    "-h": DeviceAPI.help,
-    "--mount": DeviceAPI.mount,
-    "--unmount": DeviceAPI.unmount,
-    "--create_password": DeviceAPI.create_password,
-    "--sign_in": DeviceAPI.sign_in,
-    "--change_password": DeviceAPI.change_password,
-    "--web_interface_on": DeviceAPI.web_interface_on,
-    "--web_interface_off": DeviceAPI.web_interface_off,
-    "--update": DeviceAPI.update,
-    "--info": DeviceAPI.info,
-}
+DEVICE_API = DeviceAPI()
 
-CODES = {
-    "success": 0,
-    "missing_option": 1,
-    "invalid_option": 2,
-    "invalid_argument(s)": 3,
+OPTIONS = {
+    "--mount": DEVICE_API.mount,
+    "--unmount": DEVICE_API.unmount,
+    "--flash_mode_on": DEVICE_API.flash_mode_on,
+    "--flash_mode_off": DEVICE_API.flash_mode_off,
+    "--sign_in": DEVICE_API.sign_in,
+    "--create_password": DEVICE_API.create_password,
+    "--change_password": DEVICE_API.change_password,
+    "--web_interface_on": DEVICE_API.web_interface_on,
+    "--web_interface_off": DEVICE_API.web_interface_off,
+    "--update": DEVICE_API.update,
+    "--info": DEVICE_API.info,
 }
 
 
 def main(*args, **kwargs):
     if not args:
-        return help()
+        return show_help()
 
     command = args[0]
+    if command in ["--help", "-h"]:
+        return show_help()
+
     if command not in OPTIONS:
-        return help(CODES["invalid_option"])
+        return show_help(DEVICE_API.CODES["invalid_option"])
 
     try:
-        return OPTIONS[command](*args[1:])
+        if len(args) == 1:
+            return OPTIONS[command]()
+        else:
+            return OPTIONS[command](*args[1:])
     except Exception:
-        return help(CODES["invalid_argument(s)"])
+        return show_help(DEVICE_API.CODES["invalid_argument(s)"])
     pass
 
 
-def help(return_code=CODES["success"]):
+def show_help(return_code=DEVICE_API.CODES["success"]):
+    print(
+        """
+        Usage: python main.py [option] [arguments]
+        Options:
+        --help, -h:                     Show this help message
+        --mount [path]:                 Mount the an ISO file for USB use
+        --unmount:                      Unmount the device ISO
+        --flash_mode_on:                Turn on flash drive mode
+        --flash_mode_off:               Turn off the flash drive mode
+        --sign_in [pin]:                Sign in with the provided password
+        --change_password [old] [new]:  Change the password
+        --web_interface_on:             Turn on the web interface
+        --web_interface_off:            Turn off the web interface
+        --update:                       Update the device
+        --info:                         Get information about the device
+        """
+    )
     return return_code
 
 
