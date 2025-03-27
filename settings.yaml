@@ -1,23 +1,41 @@
 device:
   pin_hash: d7697570462f7562b83e81258de0f1e41832e98072e44c36ec8efec46786e24e
+  version: 0.0.1
 device_backend:
   place_holder: text
 flash_mode:
   auto_start: false
+  active: false
+info:
+  last_checked: '2025-03-27 11:13:30'
+  last_update: '2025-03-27 11:22:43'
+  local_ip: 192.168.200.150
 mount_mode:
   auto_start: false
 touch_gui:
   auto_start: true
+wap:
+  auto_start: false
 web_if:
   api:
-    port: 12413
-    workers: 5
-    threads: 2
-    worker_class: gthread
-    timeout: 60
+    auto_start: true
     keepalive: 2
     max_requests: 500
     max_requests_jitter: 50
-  auto_start: true
+    port: 12413
+    threads: 2
+    timeout: 60
+    worker_class: gthread
+    workers: 5
   client:
+    auto_start: true
+    active: true 
+    keepalive: 2
+    max_requests: 500
+    max_requests_jitter: 50
     port: 56666
+    threads: 2
+    timeout: 60
+    worker_class: gthread
+    workers: 5
+

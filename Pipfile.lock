@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2d541aa29f428a3af66e3b370f99c3f76d72e56b4c69de9b3576c1b62ae5d0ba"
+            "sha256": "cded71d5b3e1d0e2354ead4d731909da1ad18b40a0d6419bc355ec1b24741889"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -36,7 +36,17 @@
                 "sha256:d667207822eb83f1c4b50949b1623c8fc8d51f2341d65f72e1a1815397551136"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.9'",
             "version": "==3.1.0"
+        },
+        "flask-cors": {
+            "hashes": [
+                "sha256:6ccb38d16d6b72bbc156c1c3f192bc435bfcc3c2bc864b2df1eb9b2d97b2403c",
+                "sha256:fa5cb364ead54bbf401a26dbf03030c6b18fb2fcaf70408096a572b409586b0c"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9' and python_version < '4.0'",
+            "version": "==5.0.1"
         },
         "gunicorn": {
             "hashes": [
@@ -44,6 +54,7 @@
                 "sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==23.0.0"
         },
         "iniconfig": {
@@ -205,6 +216,7 @@
                 "sha256:f650c8acb226e74967cdaeb90bdd126b039f3f76d461f99e3a355064cf9381ba"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.9'",
             "version": "==2.5.3"
         },
         "pytest": {
@@ -213,6 +225,7 @@
                 "sha256:f4efe70cc14e511565ac476b57c279e12a855b11f48f212af1080ef2263d3845"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==8.3.5"
         },
         "pyyaml": {
@@ -272,6 +285,7 @@
                 "sha256:ff3824dc5261f50c9b0dfb3be22b4567a6f938ccce4587b38952d85fd9e9afe4"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==6.0.2"
         },
         "werkzeug": {

@@ -3,10 +3,10 @@ YAML_FILE = "settings.yaml"
 SETTINGS = {}
 
 with open(YAML_FILE, "r") as file:
-    SETTINGS = yaml.safe_load(file)["web_if"]["api"]
+    SETTINGS = yaml.safe_load(file)["web_if"]["client"]
 
 port = SETTINGS["port"]
-bind = f"127.0.0.1:{port}"
+bind = f"0.0.0.0:{port}"
 workers = int(SETTINGS["workers"])
 threads = int(SETTINGS["threads"])
 worker_class = SETTINGS["worker_class"]

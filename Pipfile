@@ -9,5 +9,6 @@ pygame-ce = "*"
 flask = "*"
 gunicorn = "*"
 pytest = "*"
+flask-cors = "*"
 
 [dev-packages]

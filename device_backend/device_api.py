@@ -1,5 +1,8 @@
+import fcntl
 import hashlib
+import socket
 import subprocess
+from datetime import datetime
 
 import yaml
 
@@ -30,6 +33,7 @@ class DeviceAPI:
             "invalid_pin": 6,
             "pin_already_set": 7,
         }
+        self.YAML_FILE = "settings.yaml"
 
         pass
 
@@ -142,7 +146,11 @@ class DeviceAPI:
         return 0
 
     def info(self, *args, **kwargs):
-        return 0
+        settings = self.__import_yaml()
+        settings["info"]["local_ip"] = self.__get_local_ip()
+        settings["info"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.__update_yaml(settings)
+        return settings["info"]
 
     def __force_pin_reset(self):
         settings = self.__import_yaml()
@@ -165,13 +173,32 @@ class DeviceAPI:
         return len(args) == count
 
     def __import_yaml(self):
-        yaml_file = "settings.yaml"
-        with open(yaml_file, "r") as file:
+        with open(self.YAML_FILE, "r") as file:
+            # Shared lock (blocks write access)
+            fcntl.flock(file, fcntl.LOCK_SH)
             settings = yaml.safe_load(file)
+            fcntl.flock(file, fcntl.LOCK_UN)
         return settings
 
     def __update_yaml(self, settings):
-        yaml_file = "settings.yaml"
-        with open(yaml_file, "w") as file:
+        with open(self.YAML_FILE, "w") as file:
+            # Exclusive lock (blocks all access)
+            fcntl.flock(file, fcntl.LOCK_EX)
             yaml.safe_dump(settings, file)
+            fcntl.flock(file, fcntl.LOCK_UN)
         return settings
+
+    def __get_local_ip(self):
+        result = subprocess.run(["ifconfig"], stdout=subprocess.PIPE)
+        result = result.stdout.decode("utf-8").split("\n")
+        ip = None
+        for line in result:
+            line = line.strip()
+            if not line.startswith("inet 192.168."):
+                continue
+            ip = line.split(" ")[1]
+            break
+
+        if not ip:
+            return "No Connection"
+        return ip
