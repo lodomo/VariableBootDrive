@@ -10,3 +10,10 @@ settings.yaml -> web_if -> client -> active: True/False
 
 gets checked with every request, takes milliseconds to check and should have
 no noticeable impact on performance. 
+
+## Web IF API
+
+The web IF API runs on localhost, this should protect it from idiots.
+
+It's just running the device_backend main.py API and formatting it for web and
+passing it along to the Web IF Client. 

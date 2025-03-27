@@ -4,11 +4,11 @@ device:
 device_backend:
   place_holder: text
 flash_mode:
-  auto_start: false
   active: false
+  auto_start: false
 info:
   last_checked: '2025-03-27 11:13:30'
-  last_update: '2025-03-27 11:22:43'
+  last_update: '2025-03-27 14:12:03'
   local_ip: 192.168.200.150
 mount_mode:
   auto_start: false
@@ -19,6 +19,7 @@ wap:
 web_if:
   api:
     auto_start: true
+    device_backend_script: ../../device_backend/main.py
     keepalive: 2
     max_requests: 500
     max_requests_jitter: 50
@@ -28,8 +29,8 @@ web_if:
     worker_class: gthread
     workers: 5
   client:
+    active: true
     auto_start: true
-    active: true 
     keepalive: 2
     max_requests: 500
     max_requests_jitter: 50
@@ -38,4 +39,3 @@ web_if:
     timeout: 60
     worker_class: gthread
     workers: 5
-

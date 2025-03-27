@@ -150,7 +150,8 @@ class DeviceAPI:
         settings["info"]["local_ip"] = self.__get_local_ip()
         settings["info"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.__update_yaml(settings)
-        return settings["info"]
+        print(settings["info"])
+        return self.CODES["success"]
 
     def __force_pin_reset(self):
         settings = self.__import_yaml()
