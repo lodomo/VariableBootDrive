@@ -1,0 +1,23 @@
+device:
+  pin_hash: d7697570462f7562b83e81258de0f1e41832e98072e44c36ec8efec46786e24e
+device_backend:
+  place_holder: text
+flash_mode:
+  auto_start: false
+mount_mode:
+  auto_start: false
+touch_gui:
+  auto_start: true
+web_if:
+  api:
+    port: 12413
+    workers: 5
+    threads: 2
+    worker_class: gthread
+    timeout: 60
+    keepalive: 2
+    max_requests: 500
+    max_requests_jitter: 50
+  auto_start: true
+  client:
+    port: 56666

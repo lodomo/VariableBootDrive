@@ -49,35 +49,27 @@ class DeviceAPI:
         if not self.__has_args(0, *args):
             return self.CODES["invalid_argument(s)"]
 
-        '''
-        subprocess.run(
-            ["sudo", "modprobe", "g_mass_storage",
-                "file=/dev/mmcblk0p2", "removable=1"]
+        result = subprocess.run(
+            [
+                "sudo",
+                "modprobe",
+                "g_mass_storage",
+                "file=/dev/mmcblk0p2",
+                "removable=1",
+            ]
         )
-        '''
-
-        subprocess.run("./flash_mode_on.sh")
 
         return 0
 
     def flash_mode_off(self, *args, **kwargs):
         """
-        #!/bin/bash
-        echo "Disabling USB mass storage mode..."
-
-        # Unload the USB gadget module
         sudo rmmod g_mass_storage
-
-        echo "USB mass storage mode disabled. Raspberry Pi is back to normal."
         """
+
         if not self.__has_args(0, *args):
             return self.CODES["invalid_argument(s)"]
 
-        """
         subprocess.run(["sudo", "rmmod", "g_mass_storage"])
-        """
-
-        subprocess.run("./flash_mode_off.sh")
 
         return 0
 
