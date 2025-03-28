@@ -1,4 +1,4 @@
-from flask import Flask, abort
+from flask import Flask, abort, render_template
 from flask_cors import CORS
 import yaml
 import fcntl
@@ -11,7 +11,7 @@ CORS(app)
 def index():
     if not is_active():
         abort(404)
-    return "Hello, from the Client!"
+    return render_template("index.html")
 
 
 def is_active():
