@@ -1,3 +1,21 @@
-h1 {
-  color: red;
+:root {
+  --dark: #322f29;
+  --med: #7d7a73;
+  --light: #d7d4cc;
+}
+
+.loader {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--light);
+}
+
+.pin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 400px;
+  margin: 0 auto;
 }

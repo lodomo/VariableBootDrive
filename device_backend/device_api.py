@@ -79,8 +79,10 @@ class DeviceAPI:
 
     def sign_in(self, *args, **kwargs):
         """
-        Takes in a 4 digit pin and checks if it matches the stored pin
+        Accepts both a hashed pin and a raw pin
+        Anything that's not a 4 digit number is considered a hashed pin
         """
+        PIN_LENGTH = SETTINGS["device"]["pin_length"]
         if not self.__has_args(1, *args):
             return self.CODES["invalid_argument(s)"]
 
@@ -89,8 +91,12 @@ class DeviceAPI:
         if "pin_hash" not in settings["device"]:
             return self.CODES["pin_not_set"]
 
-        pin = args[0]
-        pin_hash = self.__hash(pin)
+        input = args[0]
+        pin_hash = None
+        if len(input) == PIN_LENGTH:
+            pin_hash = self.__hash(input)
+        else:
+            pin_hash = input
 
         if pin_hash != settings["device"]["pin_hash"]:
             return self.CODES["pin_incorrect"]
@@ -148,7 +154,8 @@ class DeviceAPI:
     def info(self, *args, **kwargs):
         settings = self.__import_yaml()
         settings["info"]["local_ip"] = self.__get_local_ip()
-        settings["info"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        settings["info"]["last_update"] = datetime.now().strftime(
+            "%Y-%m-%d %H:%M:%S")
         self.__update_yaml(settings)
         print(settings["info"])
         return self.CODES["success"]
