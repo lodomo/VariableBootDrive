@@ -137,6 +137,6 @@ function addElement(parent, tag, classes = []) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  pinInput();
+  // pinInput();
   // loadContent();
 });

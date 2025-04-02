@@ -29,12 +29,12 @@
     />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <script defer type="module" src="{{ url_for('static', filename='main.js') }}"></script>
   </head>
   <body>
     <div class="loader" id="loader"></div>
     <header class="header" id="header"></header>
     <main class="main" id="main"></main>
     <footer class="footer" id="footer"></footer>
-    <script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
   </body>
 </html>
