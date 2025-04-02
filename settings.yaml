@@ -2,6 +2,8 @@ device:
   pin_hash: 03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4
   pin_length: 4
   version: 0.0.1
+  image_folders:
+    - boot_images
 device_backend:
   place_holder: text
 flash_mode:
