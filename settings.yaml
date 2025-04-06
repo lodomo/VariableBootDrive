@@ -17,6 +17,16 @@ mount_mode:
   auto_start: false
 touch_gui:
   auto_start: true
+  device_backend_script: ../device_backend/main.py
+  colors:
+    dark: '#322f29'
+    light: '#d7d4cc'
+    mid: '#7d7a73'
+    transparent: '#ff00ff'
+  fps: 60
+  res_height: 120
+  res_width: 200
+  title: Variable Boot Device Touch GUI
 wap:
   auto_start: false
 web_if:

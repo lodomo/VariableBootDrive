@@ -1,0 +1,14 @@
+[Unit]
+Description=Touch GUI Pygame Launcher
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/variablebootdrive/touch_gui
+ExecStart=/usr/bin/pipenv run python main.py
+Restart=always
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=%h/.Xauthority
+
+[Install]
+WantedBy=default.target

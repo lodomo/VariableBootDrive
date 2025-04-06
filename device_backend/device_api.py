@@ -202,6 +202,7 @@ class DeviceAPI:
         ip = None
         for line in result:
             line = line.strip()
+            # TODO make this better, this was just to test on my home network
             if not line.startswith("inet 192.168."):
                 continue
             ip = line.split(" ")[1]
