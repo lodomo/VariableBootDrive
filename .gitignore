@@ -1,6 +1,3 @@
 *.pid
 /boot_images/*.img
 /boot_images/*.iso
-*.png
-*.bmp
-*.jpg
